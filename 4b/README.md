@@ -1,42 +1,49 @@
-# Enunciado de la Práctica: Creación de un Contenedor Docker para una Aplicación Flask
+# Ejercicio: Introducción a Docker con Python
 
-## Objetivo:
+## Objetivo
 
-El objetivo de esta práctica es que los estudiantes aprendan a crear un `Dockerfile` para una aplicación web simple desarrollada en Flask, y luego construir una imagen Docker y ejecutar un contenedor a partir de ella.
+Aprender los conceptos básicos de Docker utilizando una imagen oficial de Python desde el registro estándar (Docker Hub), sin crear un Dockerfile personalizado.
 
-## Tareas a Realizar:
+## Pasos del ejercicio
 
-1.  **Completar el `Dockerfile`:**
-    *   Deberán completar los comentarios y las líneas de código faltantes en el `Dockerfile` proporcionado.
-    *   Asegúrense de que el `Dockerfile` realice las siguientes acciones:
-        *   Utilice una imagen base de Python.
-        *   Establezca un directorio de trabajo dentro del contenedor.
-        *   Copie el archivo `requirements.txt` e instale las dependencias.
-        *   Copie el resto de los archivos de la aplicación.
-        *   Exponga el puerto correcto donde la aplicación Flask escuchará.
-        *   **Cree un usuario no root llamado "usertest" y configure los permisos adecuados.**
-        *   Defina el comando para ejecutar la aplicación Flask.
+1. **Aprender los fundamentos de Docker**
+   - ¿Qué es Docker?
+   - ¿Para qué sirve?
+   - Conceptos clave: imagen, contenedor, registro.
 
-2.  **Construir la Imagen Docker:**
-    *   Una vez que el `Dockerfile` esté completo, deberán construir la imagen Docker utilizando el comando `docker build`.
-    *   Asignen un nombre significativo a su imagen (por ejemplo, `mi-app-flask-practica`).
+2. **Ejecutar un contenedor Python desde la imagen oficial**
+   - Descarga y ejecuta la imagen oficial de Python desde Docker Hub:
+     ```zsh
+     docker run -it --rm -v "$PWD":/usr/src/app -w /usr/src/app python:3.9 bash
+     ```
+   - Explicación:
+     - `-it`: Modo interactivo.
+     - `--rm`: Elimina el contenedor al salir.
+     - `-v "$PWD":/usr/src/app`: Monta el directorio actual dentro del contenedor.
+     - `-w /usr/src/app`: Establece el directorio de trabajo.
+     - `python:3.9`: Imagen oficial de Python.
+     - `bash`: Inicia una terminal dentro del contenedor.
 
-3.  **Ejecutar el Contenedor Docker:**
-    *   Finalmente, deberán ejecutar un contenedor a partir de la imagen que crearon.
-    *   Asegúrense de mapear el puerto del contenedor al puerto de su máquina local para poder acceder a la aplicación desde el navegador.
+3. **Verificar que estás dentro del contenedor**
+   - Ejecuta el siguiente comando dentro del contenedor:
+     ```zsh
+     python --version
+     pwd
+     ls
+     ```
+   - Observa que el entorno es diferente al de tu máquina local.
 
-## Verificación:
+4. **Ejecutar el archivo eh4b1.py dentro del contenedor**
+   - Una vez dentro del contenedor, ejecuta:
+     ```zsh
+     python ej4b1.py
+     ```
+   - El archivo debe estar en el directorio actual (montado desde tu máquina local).
 
-*   Después de ejecutar el contenedor, abran su navegador y visiten `http://localhost:5000` (o el puerto que hayan elegido).
-*   Deberían ver una respuesta JSON similar a la siguiente:
-    ```json
-    {
-        "mensaje": "¡Hola, este es el primer ejemplo con Docker!",
-        "usuario": "usertest",
-        "pid": 1,
-        "uid": 1000
-    }
-    ```
-*   **Importante:** La aplicación debe estar ejecutándose como el usuario `usertest` dentro del contenedor, no como `root`, lo que se verifica en la respuesta JSON.
+## Notas
+- No se requiere crear un Dockerfile en este ejercicio.
+- El objetivo es familiarizarse con el uso de imágenes oficiales y la interacción básica con contenedores.
 
-¡Mucha suerte con el ejercicio!
+## Recursos útiles
+- [Documentación oficial de Docker](https://docs.docker.com/get-started/)
+- [Imágenes oficiales de Python en Docker Hub](https://hub.docker.com/_/python)

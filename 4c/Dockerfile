@@ -3,6 +3,7 @@
 
 # PASO 1: Especifica la imagen base de Python.
 # Pista: Usa una versión 'slim' para un tamaño de imagen más pequeño.
+# Pista: Usa la misma versión de Python que tenga tu entorno local.
 FROM 
 
 # PASO 2: Establece el directorio de trabajo dentro del contenedor.
