@@ -11,13 +11,15 @@ Los estudiantes deben:
 4. Verificar que la aplicación funciona y está ejecutándose como el usuario correcto
 """
 
-import os
 import getpass
+import os
+
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def hello_world():
     """
     Endpoint principal que devuelve un mensaje de bienvenida e información
@@ -30,12 +32,15 @@ def hello_world():
     except Exception as e:
         username = f"Error obteniendo usuario: {str(e)}"
 
-    return jsonify({
-        "mensaje": "¡Hola, este es el primer ejemplo con Docker!",
-        "usuario": username,
-        "pid": os.getpid(),
-        "uid": os.getuid()
-    })
+    return jsonify(
+        {
+            "mensaje": "¡Hola, este es el primer ejemplo con Docker!",
+            "usuario": username,
+            "pid": os.getpid(),
+            "uid": os.getuid(),
+        }
+    )
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
