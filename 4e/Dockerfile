@@ -21,6 +21,6 @@ USER usertest
 
 # Expone el puerto 5000
 EXPOSE 5000
-#Ejecutar la aplicacion 
+
 # Comando para ejecutar la aplicación
 CMD ["python", "app.py"]
